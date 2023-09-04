@@ -5,48 +5,48 @@
 https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
 
 1. `sudo apt update`
-2. 
-3. `sudo apt install docker.io -y`
-4. 
-5. `sudo systemctl enable docker`
-6. 
-7. `sudo systemctl status docker` //check status if docker is running.
-8. 
-9. `sudo apt-get install -y apt-transport-https ca-certificates curl`
-10. 
-11. `curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg`
-12. 
-13. `echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list`
-14. 
-15. `sudo apt-get update`
-16. 
-17. `sudo apt install kubeadm kubelet kubectl`
-18. 
-19. `sudo apt-mark hold kubeadm kubelet kubectl`
-20. 
-21. `kubeadm version` //check version
-22. 
-23. `sudo swapoff -a`
-24. 
-25. `sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab`
-26. 
-27. `sudo nano /etc/modules-load.d/containerd.conf`
-28. 
+
+2. `sudo apt install docker.io -y`
+ 
+3. `sudo systemctl enable docker`
+ 
+4. `sudo systemctl status docker` //check status if docker is running.
+ 
+5. `sudo apt-get install -y apt-transport-https ca-certificates curl`
+ 
+6. `curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg`
+ 
+7. `echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list`
+
+8. `sudo apt-get update`
+ 
+9. `sudo apt install kubeadm kubelet kubectl`
+ 
+10. `sudo apt-mark hold kubeadm kubelet kubectl`
+ 
+11. `kubeadm version` //check version
+ 
+12. `sudo swapoff -a`
+ 
+13. `sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab`
+ 
+14. `sudo nano /etc/modules-load.d/containerd.conf`
+15. 
       add the lines into the containered.conf file-
       ```overlay
       br_netfilter
       ```
-29. `sudo modprobe overlay`
+16. `sudo modprobe overlay`
     `sudo modprobe br_netfilter`
 
-30. `sudo nano /etc/sysctl.d/kubernetes.conf`
+17. `sudo nano /etc/sysctl.d/kubernetes.conf`
 
     Add the following lines:
     ```net.bridge.bridge-nf-call-ip6tables = 1
      net.bridge.bridge-nf-call-iptables = 1
      net.ipv4.ip_forward = 1```
 
-32. `sudo sysctl --system`
+18. `sudo sysctl --system`
 
 
     **Assign Unique Hostname for Each Server Node**
