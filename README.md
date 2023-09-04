@@ -1,8 +1,8 @@
 # Kubernetes-setup-op-stack
 
 
-##Installing Kubernetes
-https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
+**Installing Kubernetes**
+
 
 1. `sudo apt update`
 
